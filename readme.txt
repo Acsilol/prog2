@@ -1,0 +1,4 @@
+2021. 10. 01.
+--------------
+A projekt Unity-ben készül C# szkriptek segítségével, egy 2D top-down movement alapú indie játék, főleg pixel artokat tartalmaz. 
+A játék tematikája a Debreceni Egyetem és a célja egy tagozat teljesítése. A játék teljesítése pedig szintek teljesítésén alapul, melyeknél ellenfeleket kell legyőzni a következő szintre jutáshoz. A szinteken található ellenségek egy-egy félév tárgyaira próbálnak hajazni, mely a tárgy 'teljesítését' próbálja reprezentálni. A problémamentes játékmenet mellett az a legfőbb cél, hogy felismerhetőek legyenek az ellenfelek, mindenki (aki találkozott valaha az adott tárggyal) ráismerjen egy-egy ilyen tárgyra. 
