@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
     CircleCollider2D cc2d;
 
-    private int attackDamage = 20;
+    private int attackDamage = 10;
     private float attackSpeed = 1f;
     private float canAttack;
 
@@ -35,6 +35,11 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    /*private void Awake()
+    {
+        target = GetComponent<PlayerController>().GetComponent<Transform>();
+    }*/
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,14 +49,15 @@ public class EnemyAI : MonoBehaviour
 
         // Getting rigidbody and seeker(Pathfinder)
         seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();        
+        rb = GetComponent<Rigidbody2D>();
+        cc2d = GetComponent<CircleCollider2D>();
 
-        // UpdatePath method gets called first at 0f then repeats after .5f 
+        // UpdatePath method gets called first at 0f then repeats after .3f 
         InvokeRepeating("UpdatePath", 0f, .3f);
     }
 
     private void Update()
-    {
+    {        
         // Animating the AI movement
         Vector2 movement_vector = new Vector2(rb.velocity.x, rb.velocity.y);
         if (movement_vector != Vector2.zero)
@@ -78,6 +84,7 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
+        target = GameObject.Find("Player").transform;
         if (isDead == false)
         {
             if (path == null)
@@ -109,20 +116,21 @@ public class EnemyAI : MonoBehaviour
 
             if (currentHealth < 0.0001)
             {
-                StartCoroutine(DeathDelay());                
+                StartCoroutine(DeathDelay());                                
             }
         }
     }
 
     IEnumerator DeathDelay()
     {
-        animator.SetBool("isDead", true);
+        animator.SetBool("isDead", true);       
         isDead = true;
+        Destroy(cc2d);
         int destroyTime = 3;
         yield return new WaitForSeconds(destroyTime);        
         Destroy(gameObject);
         //SpawnNew();
-
+        
     }
 
     /*void SpawnNew() 

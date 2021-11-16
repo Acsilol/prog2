@@ -17,13 +17,14 @@ public class EnemyCasterAI : MonoBehaviour
     public Transform target;
     public Animator animator;    
 
-    public static int attackDamage = 80;
+    public static int attackDamage = 5;
     public float nextFire;
     public float attackSpeed = 0.7f;
     
     private float attackRange = 30f;
     private bool inRange = false;
     public GameObject enemyBullet;
+    public GameObject enemyPrefab;
 
     // Follow script variables
     public float speed = 200f;
@@ -35,6 +36,11 @@ public class EnemyCasterAI : MonoBehaviour
     //public bool reachedEndOfPath;
     //Seeker seeker;
     Rigidbody2D rb;
+    CircleCollider2D cc2d;
+
+    private int shotCounter = 0;
+    private int maxShotCounter = 30;
+    private bool oneTimeSpawn = false;
 
 
     // Start is called before the first frame update
@@ -47,6 +53,7 @@ public class EnemyCasterAI : MonoBehaviour
         // Getting rigidbody and seeker(Pathfinder)
         //seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        cc2d = GetComponent<CircleCollider2D>();
 
         // UpdatePath method gets called first at 0f then repeats after .5f 
         //InvokeRepeating("UpdatePath", 0f, .3f);
@@ -125,6 +132,7 @@ public class EnemyCasterAI : MonoBehaviour
         animator.SetBool("isDead", true);
         animator.SetBool("isEnraged", false);
         isDead = true;
+        Destroy(cc2d);
         int destroyTime = 3;
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);        
@@ -148,19 +156,39 @@ public class EnemyCasterAI : MonoBehaviour
     }
 
     void Shoot() 
-    {
+    {        
         if (Time.time > nextFire)
         {
-            Instantiate(enemyBullet, transform.position, Quaternion.identity);
+            Instantiate(enemyBullet, transform.position, Quaternion.identity);            
             nextFire = Time.time + attackSpeed;
+            shotCounter++;
         }
+        if (shotCounter == maxShotCounter)
+        {
+            SpawnNewEnemy(1);
+            shotCounter = 0;
+        }
+    }
+
+    void SpawnNewEnemy(int a)
+    {
+        // a = number of enemies to spawn
+        for (int i = 0; i < a; i++)
+        {
+            Instantiate(enemyPrefab, transform.position, transform.rotation);
+        }               
     }
 
     void Enrage() 
     {
         animator.SetBool("isEnraged", true);
-        attackDamage = 40;
-        attackSpeed = 0.1f;
+        attackDamage = 15;
+        attackSpeed = 0.5f;        
+        if (oneTimeSpawn == false)
+        {
+            SpawnNewEnemy(1);
+            oneTimeSpawn = true;
+        }
     }
     
 }

@@ -627,14 +627,14 @@ MonoBehaviour:
   maxHealth: 1000
   currentHealth: 100
   healthBar: {fileID: 3882641771478789883}
-  target: {fileID: 796964958394874375, guid: 0a4d0e3f69db6bb40b10a7f8a93a3e6d, type: 3}
+  target: {fileID: 7667146096752328339, guid: 658cdd1c0aae0d648a83d13c286df504, type: 3}
   animator: {fileID: 3882641770855163496}
   nextFire: 0
-  attackSpeed: 0.7
+  attackSpeed: 1
   enemyBullet: {fileID: 1411766524084216533, guid: 22b5e6e949377ef4cae646c5747763b4, type: 3}
+  enemyPrefab: {fileID: 5802725960151461409, guid: c9fde8771108ce349b7e0ce2208fdb8f, type: 3}
   speed: 200
   nextWaypointDistance: 3
-  reachedEndOfPath: 0
 --- !u!50 &3882641772232918257
 Rigidbody2D:
   serializedVersion: 4

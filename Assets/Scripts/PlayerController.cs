@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         Move();
         // Processing inputs
         ProcessInputs();
+        
 
         animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
         animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
