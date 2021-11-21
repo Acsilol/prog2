@@ -33,12 +33,7 @@ public class EnemyAI : MonoBehaviour
     int currentWaypoint = 0;
     public bool reachedEndOfPath;
     Seeker seeker;
-    Rigidbody2D rb;
-
-    /*private void Awake()
-    {
-        target = GetComponent<PlayerController>().GetComponent<Transform>();
-    }*/
+    Rigidbody2D rb;   
 
 
     // Start is called before the first frame update
@@ -132,11 +127,6 @@ public class EnemyAI : MonoBehaviour
         //SpawnNew();
         
     }
-
-    /*void SpawnNew() 
-    {
-        Instantiate(enemyPrefab, target.position, target.rotation);
-    }*/
 
     void OnPathComplete(Path p)
     {

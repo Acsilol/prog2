@@ -15,9 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
     public Rigidbody2D rb;
-    private Vector2 moveDirection;
-
-    // private Vector2 mousePosition;
+    private Vector2 moveDirection;    
 
     public Animator animator;
 
@@ -26,11 +24,17 @@ public class PlayerController : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
+    // EnemyCaster variables
+    Vector3 enemyStartingPos = new Vector3(6f, 0f, 0f);
+    public GameObject casterPrefab;
+
     private void Start()
     {
         // Setting the currentHealth to maxHealth on Start()
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        StartCoroutine(SpawnCaster());
     }
 
     void FixedUpdate()
@@ -43,6 +47,14 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
         animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
         animator.SetFloat("Speed", moveDirection.sqrMagnitude);        
+    }
+
+    IEnumerator SpawnCaster() 
+    {
+        yield return new WaitForSeconds(5f);
+        GameObject EnemyCaster = Instantiate(casterPrefab, enemyStartingPos, Quaternion.identity);
+
+        
     }
 
     void Shoot(float x, float y)
