@@ -305,7 +305,7 @@ MonoBehaviour:
   animator: {fileID: 7667146096752328337}
   bulletPrefab: {fileID: 8507071751242412210, guid: 735917f4a0d37924e868df3aabd3c310, type: 3}
   bulletSpeed: 10
-  fireDelay: 0.4
+  fireDelay: 1
   casterPrefab: {fileID: 3882641772232918271, guid: 097c5f1742b4c80468bc0a21eb203452, type: 3}
 --- !u!95 &7667146096752328337
 Animator:

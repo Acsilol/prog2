@@ -625,13 +625,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c25fda3bbd52a4bb4c4e8988a4ebfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 5000
   currentHealth: 100
   healthBar: {fileID: 3882641771478789883}
   target: {fileID: 7667146096752328339, guid: 658cdd1c0aae0d648a83d13c286df504, type: 3}
   animator: {fileID: 3882641770855163496}
   nextFire: 30
-  attackSpeed: 0.1
+  attackSpeed: 0.8
   enemyBullet: {fileID: 1411766524084216533, guid: 22b5e6e949377ef4cae646c5747763b4, type: 3}
   enemyPrefab: {fileID: 5802725960151461409, guid: c9fde8771108ce349b7e0ce2208fdb8f, type: 3}
   speed: 200
